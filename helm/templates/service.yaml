@@ -6,6 +6,7 @@ spec:
   selector:
     {{- include "app.labels" . | nindent 4 }}
   type: {{ .Values.service.type | default "ClusterIP" }}
+  # type: {{- if .Values.ingress.enabled }} ClusterIP {{- else }} LoadBalancer {{- end }}
   ports:
     - name: http
       protocol: TCP
