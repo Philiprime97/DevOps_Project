@@ -2,25 +2,56 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub') // Jenkins credential ID (username/password)
-        IMAGE_NAME = 'philiprime97/myapp'
-        IMAGE_TAG = 'v1'
+        IMAGE_NAME     = 'philiprime97/myapp-b'   // Your Docker Hub repo
+        IMAGE_TAG      = 'v1'                     // Image tag version
+        CREDENTIALS_ID = 'dockerhub'              // Jenkins Docker Hub credentials ID
+        HTML_TEMPLATE  = 'https://raw.githubusercontent.com/Philiprime97/DevOps_Project_2025/main/html.tpl'
     }
 
     stages {
-        stage('Checkout') {
+
+        stage('Docker Info Check') {
+            steps {
+                sh 'docker info'
+            }
+        }
+
+        stage('Checkout Code') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Docker Login') {
-            steps {
-                script {
-                    sh """
-                        echo \$DOCKERHUB_CREDENTIALS_PSW | docker login -u \$DOCKERHUB_CREDENTIALS_USR --password-stdin
-                    """
+        stage('Lint & Security Scan') {
+            parallel {
+
+                stage('Linting') {
+                    steps {
+                        echo '🔍 Running Python lint and Dockerfile checks...'
+                        sh '''
+                        flake8 . > flake8-report.txt || true
+                        if [ -f Dockerfile ]; then
+                            docker run --rm -i hadolint/hadolint < Dockerfile >> flake8-report.txt 2>&1 || echo "Dockerfile issues" >> flake8-report.txt
+                        fi
+                        '''
+                        archiveArtifacts artifacts: 'flake8-report.txt', fingerprint: true
+                    }
                 }
+
+                stage('Scan Source Code') {
+                    steps {
+                        echo '🔒 Scanning source code with Trivy and generating HTML...'
+                        sh '''
+                        wget -q -O html.tpl ${HTML_TEMPLATE}
+                        trivy fs . --severity UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL \
+                            --format template --template "@html.tpl" \
+                            -o trivy-source-report.html || true
+                        cat trivy-source-report.html
+                        '''
+                        archiveArtifacts artifacts: 'trivy-source-report.html', fingerprint: true
+                    }
+                }
+
             }
         }
 
@@ -28,18 +59,42 @@ pipeline {
             steps {
                 script {
                     sh """
-                        cd docker &&
-                        docker build -t \$IMAGE_NAME:\$IMAGE_TAG ./app
+                    cd docker && \
+                    docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
                     """
                 }
             }
         }
 
-        stage('Push to Docker Hub') {
+        stage('Image Scan (Trivy Image)') {
+            steps {
+                echo '🔒 Scanning Docker image with Trivy...'
+                sh '''
+                wget -q -O html.tpl ${HTML_TEMPLATE}
+                trivy image --severity UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL \
+                    --format template --template "@html.tpl" \
+                    -o trivy-image-report.html ${IMAGE_NAME}:${IMAGE_TAG} || true
+                cat trivy-image-report.html
+                '''
+                archiveArtifacts artifacts: 'trivy-image-report.html', fingerprint: true
+            }
+        }
+
+        stage('Login to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: "${CREDENTIALS_ID}", usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh '''
+                    echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                    '''
+                }
+            }
+        }
+
+        stage('Push Image to Docker Hub') {
             steps {
                 script {
                     sh """
-                        docker push \$IMAGE_NAME:\$IMAGE_TAG
+                    docker push ${IMAGE_NAME}:${IMAGE_TAG}
                     """
                 }
             }
@@ -48,8 +103,14 @@ pipeline {
 
     post {
         always {
-            echo "Cleaning workspace..."
-            cleanWs()
+            echo "🧹 Cleaning up local images..."
+            sh 'docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true'
+        }
+        success {
+            echo "✅ Successfully scanned and pushed ${IMAGE_NAME}:${IMAGE_TAG} to Docker Hub"
+        }
+        failure {
+            echo "❌ Build failed. Check logs and Trivy reports."
         }
     }
 }
