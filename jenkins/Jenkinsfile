@@ -66,7 +66,7 @@ pipeline {
             }
         }
 
-        stage('Image Scan (Trivy Image)') {
+        stage('Image Scan') {
             steps {
                 echo '🔒 Scanning Docker image with Trivy...'
                 sh '''
