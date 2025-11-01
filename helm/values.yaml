@@ -1,12 +1,12 @@
 deployment:
   replicaset: 4
   #pulling from harbor:
-  imagename: 192.168.1.179:80/devops/myapp
-  imagetag: 1
-  pullPolicy: IfNotPresent
-  #pulling from git: 
-  #imagename: philiprime97/awsviewer
+  #imagename: 192.168.1.179:80/devops/myapp
   #imagetag: v1
+  pullPolicy: IfNotPresent
+  #pulling from dockerhub: 
+  imagename: philiprime97/myapp-b
+  imagetag: v1
 
 service:
   type: NodePort
