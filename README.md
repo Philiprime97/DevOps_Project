@@ -106,25 +106,27 @@ sudo systemctl enable jenkins
 http://(vm1-ip):8080
 
 ### 🧩 2. Jenkins Plugins:
-- Pipeline: Stage Step - Enables structured Jenkins pipelines with stages and steps for CI/CD workflows.
-- Blue Ocean - Provides a modern, visual interface to easily monitor pipeline stages and build history.
-- HTML Publisher plugin - Allows Jenkins to display HTML reports as build artifacts directly in the interface.
+- **Pipeline: Stage View** - Enables structured Jenkins pipelines with stages and steps for CI/CD workflows.
+- **Blue Ocean** - Provides a modern, visual interface to easily monitor pipeline stages and build history.
+- **HTML Publisher plugin** - Allows Jenkins to display HTML reports as build artifacts directly in the interface.
 
 #### 🔑 Jenkins Credentials:
-DockerHub credentials( ID: dockerhub ) - Used securely by the pipeline to log in and push Docker images without exposing passwords.
+**DockerHub credentials( ID: dockerhub )** - Used securely by the pipeline to log in and push Docker images without exposing passwords.
 
-### 🧮 3. Jenkins Pipeline
+### 3. Jenkins Pipeline
+The Jenkinsfile automates the following CI/CD stages:
 
-#### Your Jenkinsfile (stored in the GitHub repo) automates:
+| Step | Description |
+|------|-------------|
+| 1 | Clone the repository from GitHub |
+| 2 | Run `flake8` for linting |
+| 3 | Scan source code with Trivy |
+| 4 | Build Docker image |
+| 5 | Scan Docker image with Trivy |
+| 6 | Login to Docker Hub |
+| 7 | Push image to Docker Hub |
+| 8 | Cleanup temporary containers/images |
 
-- Clone repository
-- Run flake8 for linting
-- Scan code with Trivy
-- Build Docker image
-- Scan Docker image with Trivy
-- Login to Docker Hub
-- Push image
-- Cleanup temporary containers/images
 
 
 ### 📊 4. HTML Reports and Jenkins Artifacts
