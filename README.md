@@ -170,7 +170,7 @@ To display these HTML reports directly within Jenkins:
 
 - Install the **“HTML Publisher Plugin.”**
 
-- Opened the Jenkins Script Console (Manage Jenkins → Script Console).
+- Opened the Jenkins **Script Console (Manage Jenkins → Script Console)**.
 
 - Executed the following command to disable the restrictive CSP policy:
 ```bash
@@ -178,6 +178,7 @@ System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
 ```
 This allowed Jenkins to render inline HTML safely and display all reports in the browser directly from the build artifacts.
 
+![script console](https://github.com/user-attachments/assets/76193621-bbae-46ab-b113-ac1561c6eba7)
 
 ---
 
