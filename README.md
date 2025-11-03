@@ -259,7 +259,7 @@ minikube tunnel
 kubectl port-forward svc/aws 5000:5001 -n aws --address=0.0.0.0
 ```
 
-Now access the app from your browser:
+Now access the app from your local windows pc browser:
 - http://(VM2-IP):5000
 
 ![AWS Resource Viewer - Output](https://github.com/user-attachments/assets/3a3884d6-9cbc-40b2-8eca-f1883a0b970e)
