@@ -110,7 +110,7 @@ sudo systemctl enable jenkins
 ### Access Jenkins UI:
 - http://(VM1-IP):8080
 
-### ArgoCD Login:
+### Jenkins Login:
 - Username: admin
 - Password: type this command in the terminal on **VM1**
 
