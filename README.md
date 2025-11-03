@@ -239,6 +239,8 @@ In ArgoCD UI → “New App” →
 - Namespace: `aws`
 - Then click Sync → ArgoCD will deploy automatically.
 
+![argocd deployment](https://github.com/user-attachments/assets/394ae234-301c-4a0a-8296-a7c06568edf4)
+
 ### 🌐 10. Access the Application
 
 Since Minikube runs locally:
@@ -248,7 +250,7 @@ kubectl port-forward svc/aws 5000:5001 -n aws --address=0.0.0.0
 ```
 
 Now access the app from your browser:
-👉 http://localhost:8080
+👉 http://(VM2-IP):5000
 
 ---
 
