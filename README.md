@@ -108,13 +108,15 @@ sudo systemctl enable jenkins
 ```
 
 ### Access Jenkins UI:
-http://(vm1-ip):8080
+http://(VM1-IP):8080
 
 ### ArgoCD Login:
 - Username: admin
-- Password: type this command in the terminal 
+- Password: type this command in the terminal on **VM1**
 
 `sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
+
+![jenkins ui](https://github.com/user-attachments/assets/d2c83412-2a55-40dc-bb2d-72437b4042c3)
 
 ### 🧩 2. Jenkins Plugins:
 - **Pipeline: Stage View** - Enables structured Jenkins pipelines with stages and steps for CI/CD workflows.
