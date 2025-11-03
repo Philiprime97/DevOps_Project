@@ -8,7 +8,7 @@ It integrates **GitHub, Jenkins, Docker, Trivy, Helm, ArgoCD, and Minikube** to 
 
 ---
 
-## 🧩 Project Architecture
+## Project Architecture
 
 ### Components Used
 
@@ -18,12 +18,12 @@ It integrates **GitHub, Jenkins, Docker, Trivy, Helm, ArgoCD, and Minikube** to 
 | **VM1 (Jenkins Server)**     | CI pipeline: code linting, image building, scanning, and pushing to Docker Hub |
 | **VM2 (Minikube + ArgoCD)**  | CD environment: deploys Helm chart of the app to Kubernetes cluster |
 
-## 🧩 Project Diagram
+## Project Diagram
 ![DevOps Project 1 Architecture Diagram](https://github.com/user-attachments/assets/392ead60-0b86-4b66-8374-5ca8671352ea)
 
 ---
 
-## 🐧 Operating System – Ubuntu 24.04 LTS
+## Operating System – Ubuntu 24.04 LTS
 Both virtual machines were configured using Ubuntu 24.04 LTS as the operating system.
 This version offers strong long-term support, high stability, and compatibility with most DevOps tools including Jenkins, Docker, and Kubernetes.
 Its lightweight and secure design made it ideal for hosting the pipeline infrastructure.
@@ -31,13 +31,13 @@ Its lightweight and secure design made it ideal for hosting the pipeline infrast
 ![vm1 and vm2](https://github.com/user-attachments/assets/7dd5ad7a-4c50-4267-8ff7-a4f30da52c3c)
 
 
-## 💻 Development Environment – Visual Studio Code
+## Development Environment – Visual Studio Code
 All Python application development and Git version control were performed using **Visual Studio Code (VSC)** on my local Windows machine.
 
 
-## ⚙️ 1. Application Setup
+## 1. Application Setup
 
-### 🐍 Python Application
+### Python Application
 
 The application is a **Python-based AWS resource fetcher** built with **Boto3** SDK.
 It connects to an AWS account, retrieves data (like EC2 instances, S3 buckets, and regions), and dynamically generates an **HTML page with a custom-table** displaying all collected information.
@@ -45,7 +45,7 @@ It connects to an AWS account, retrieves data (like EC2 instances, S3 buckets, a
 This HTML page is later served and packaged inside a Docker container, becoming the deployable artifact in the CI/CD pipeline.
 
 
-### 🧱 Local Setup
+### Local Setup
 
 
 1. Create virtual environment
@@ -67,7 +67,7 @@ git commit -m "Initial commit"
 git push origin main
 ```
 
-### 🔐 AWS Credentials
+### AWS Credentials
 
 AWS access is handled securely through environment variables:
 ```bash
@@ -78,7 +78,7 @@ export AWS_DEFAULT_REGION=eu-central-1
 ⚠️ Never hardcode AWS credentials inside your code or commit them to GitHub.
 
 
-### 🐳 Dockerization
+### Dockerization
 
 To containerize the application, a lightweight Dockerfile was created :
 ```bash
@@ -94,8 +94,8 @@ The Jenkins pipeline builds this image, scans it for vulnerabilities using Trivy
 
 ---
 
-## ⚙️ 2. CI Setup – Jenkins Server (VM1)
-### 🧰 1. Install Jenkins
+##  2. CI Setup – Jenkins Server (VM1)
+###  1. Install Jenkins
 ```bash
 sudo apt update
 sudo apt install openjdk-11-jdk -y
@@ -108,7 +108,7 @@ sudo systemctl enable jenkins
 ```
 
 ### Access Jenkins UI:
-http://(VM1-IP):8080
+- http://(VM1-IP):8080
 
 ### ArgoCD Login:
 - Username: admin
@@ -118,7 +118,7 @@ http://(VM1-IP):8080
 
 ![jenkins ui](https://github.com/user-attachments/assets/d2c83412-2a55-40dc-bb2d-72437b4042c3)
 
-### 🧩 2. Jenkins Plugins:
+###  2. Jenkins Plugins:
 - **Pipeline: Stage View** - Enables structured Jenkins pipelines with stages and steps for CI/CD workflows.
 
 ![STAGE VIEW](https://github.com/user-attachments/assets/18de0497-c93f-47cc-9fab-e52ad297c6bd)
@@ -131,7 +131,7 @@ http://(VM1-IP):8080
 
 ![reports](https://github.com/user-attachments/assets/ab18b1b0-fcd3-49d1-bae2-81cc8ebb9f1b)
 
-#### 🔑 Jenkins Credentials:
+####  Jenkins Credentials:
 **DockerHub credentials( ID: dockerhub )** - Used securely by the pipeline to log in and push Docker images without exposing passwords.
 
 ![credentiols](https://github.com/user-attachments/assets/20246539-e18e-448b-99c5-2616f3825b35)
@@ -215,7 +215,7 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 ```
 
 ### 7. Access ArgoCD UI:
-http://(VM2-IP):8080
+- http://(VM2-IP):8080
 
 ### 8. ArgoCD Login:
 - Username: admin
@@ -260,7 +260,7 @@ kubectl port-forward svc/aws 5000:5001 -n aws --address=0.0.0.0
 ```
 
 Now access the app from your browser:
-👉 http://(VM2-IP):5000
+- http://(VM2-IP):5000
 
 ![AWS Resource Viewer - Output](https://github.com/user-attachments/assets/3a3884d6-9cbc-40b2-8eca-f1883a0b970e)
 
