@@ -17,6 +17,7 @@ It integrates **GitHub, Jenkins, Docker, Trivy, Helm, ArgoCD, and Minikube** to 
 | **Local PC (Windows)**       | Development machine, source code editing, and GitHub pushes |
 | **VM1 (Jenkins Server)**     | CI pipeline: code linting, image building, scanning, and pushing to Docker Hub |
 | **VM2 (Minikube + ArgoCD)**  | CD environment: deploys Helm chart of the app to Kubernetes cluster |
+![DevOps Project 1 Architecture Diagram](https://github.com/user-attachments/assets/392ead60-0b86-4b66-8374-5ca8671352ea)
 
 ---
 
