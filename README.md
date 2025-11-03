@@ -253,7 +253,7 @@ kubectl get svc -n aws
 
 ### 12. Access the Application
 
-Since Minikube runs locally:
+Since Minikube runs locally, port-forward on VM2 :
 ```bash
 minikube tunnel
 kubectl port-forward svc/aws 5000:5001 -n aws --address=0.0.0.0
