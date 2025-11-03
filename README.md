@@ -134,7 +134,7 @@ http://(VM1-IP):8080
 #### 🔑 Jenkins Credentials:
 **DockerHub credentials( ID: dockerhub )** - Used securely by the pipeline to log in and push Docker images without exposing passwords.
 
-![credentiols](https://github.com/user-attachments/assets/fc13baf8-26b5-4918-9b6f-e7427cd1800c)
+![credentiols](https://github.com/user-attachments/assets/20246539-e18e-448b-99c5-2616f3825b35)
 
 ### 3. Jenkins Pipeline
 The Jenkinsfile automates the following CI/CD stages:
