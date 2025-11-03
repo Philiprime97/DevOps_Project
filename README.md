@@ -27,6 +27,7 @@ It integrates **GitHub, Jenkins, Docker, Trivy, Helm, ArgoCD, and Minikube** to 
 Both virtual machines were configured using Ubuntu 24.04 LTS as the operating system.
 This version offers strong long-term support, high stability, and compatibility with most DevOps tools including Jenkins, Docker, and Kubernetes.
 Its lightweight and secure design made it ideal for hosting the pipeline infrastructure.
+![vm1 and vm2](https://github.com/user-attachments/assets/7dd5ad7a-4c50-4267-8ff7-a4f30da52c3c)
 
 
 ## 💻 Development Environment – Visual Studio Code
