@@ -120,7 +120,13 @@ http://(VM1-IP):8080
 
 ### 🧩 2. Jenkins Plugins:
 - **Pipeline: Stage View** - Enables structured Jenkins pipelines with stages and steps for CI/CD workflows.
+
+![STAGE VIEW](https://github.com/user-attachments/assets/18de0497-c93f-47cc-9fab-e52ad297c6bd)
+
 - **Blue Ocean** - Provides a modern, visual interface to easily monitor pipeline stages and build history.
+
+![BLUE OCEAN](https://github.com/user-attachments/assets/ab496ebc-b945-4c5c-bdab-37e7b3359fb8)
+
 - **HTML Publisher plugin** - Allows Jenkins to display HTML reports as build artifacts directly in the interface.
 
 #### 🔑 Jenkins Credentials:
