@@ -34,7 +34,11 @@ All Python application development and Git version control were performed using 
 
 ### 🐍 Python Application
 
-The app fetches AWS resource data using **Boto3**.
+The application is a **Python-based AWS resource fetcher** built with **Boto3** SDK.
+It connects to an AWS account, retrieves data (like EC2 instances, S3 buckets, and regions), and dynamically generates an **HTML page with a custom-table** displaying all collected information.
+
+This HTML page is later served and packaged inside a Docker container, becoming the deployable artifact in the CI/CD pipeline.
+
 
 ### 🧱 Local Setup
 
@@ -57,6 +61,32 @@ git add .
 git commit -m "Initial commit"
 git push origin main
 ```
+
+### 🔐 AWS Credentials
+
+AWS access is handled securely through environment variables:
+```bash
+export AWS_ACCESS_KEY_ID=<your-access-key>
+export AWS_SECRET_ACCESS_KEY=<your-secret-key>
+export AWS_DEFAULT_REGION=eu-central-1
+```
+⚠️ Never hardcode AWS credentials inside your code or commit them to GitHub.
+
+
+### 🐳 Dockerization
+
+To containerize the application, a lightweight Dockerfile was created :
+```bash
+FROM python:3.11-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --upgrade pip && pip install -r requirements.txt
+COPY . .
+EXPOSE 5001
+CMD ["python", "app.py"]
+```
+The Jenkins pipeline builds this image, scans it for vulnerabilities using Trivy, and pushes it to Docker Hub for deployment.
+
 ---
 
 ## ⚙️ 2. CI Setup – Jenkins Server (VM1)
