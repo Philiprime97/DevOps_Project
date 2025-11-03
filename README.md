@@ -129,6 +129,8 @@ http://(VM1-IP):8080
 
 - **HTML Publisher plugin** - Allows Jenkins to display HTML reports as build artifacts directly in the interface.
 
+![reports](https://github.com/user-attachments/assets/ab18b1b0-fcd3-49d1-bae2-81cc8ebb9f1b)
+
 #### 🔑 Jenkins Credentials:
 **DockerHub credentials( ID: dockerhub )** - Used securely by the pipeline to log in and push Docker images without exposing passwords.
 
