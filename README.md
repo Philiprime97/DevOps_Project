@@ -244,7 +244,14 @@ In ArgoCD UI → “New App” →
 
 ![argocd deployment](https://github.com/user-attachments/assets/394ae234-301c-4a0a-8296-a7c06568edf4)
 
-### 11. Access the Application
+### 11. Check the pod's svc port
+```bash
+kubectl get svc -n aws
+```
+
+![svc port](https://github.com/user-attachments/assets/05bd19a4-d810-4468-b28b-a8d285621eb2)
+
+### 12. Access the Application
 
 Since Minikube runs locally:
 ```bash
@@ -254,6 +261,8 @@ kubectl port-forward svc/aws 5000:5001 -n aws --address=0.0.0.0
 
 Now access the app from your browser:
 👉 http://(VM2-IP):5000
+
+![AWS Resource Viewer - Output](https://github.com/user-attachments/assets/3a3884d6-9cbc-40b2-8eca-f1883a0b970e)
 
 ---
 
