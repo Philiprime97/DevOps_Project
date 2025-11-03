@@ -152,7 +152,7 @@ The Jenkinsfile automates the following CI/CD stages:
 
 
 
-### 📊 4. HTML Reports and Jenkins Artifacts
+### 4. HTML Reports and Jenkins Artifacts
 
 During the Jenkins pipeline execution, three reports were generated:
 - **flake8-report.txt**
@@ -163,7 +163,7 @@ Each report was stored as a **Jenkins artifact**, allowing review after each bui
 The reports used a **custom HTML template** downloaded from the prohect repository during the pipeline run to produce a clean, professional overview.
 
 
-### 🌐 5. Enabling HTML Rendering in Jenkins
+### 5. Enabling HTML Rendering in Jenkins
 
 By default, Jenkins blocks inline HTML and JavaScript for security.
 To display these HTML reports directly within Jenkins:
@@ -182,7 +182,7 @@ This allowed Jenkins to render inline HTML safely and display all reports in the
 
 ---
 
-## ☸️ 3. CD Setup – Minikube + ArgoCD (VM2)
+## 3. CD Setup – Minikube + ArgoCD (VM2)
 ### 1. Install Minikube
 ```bash
 sudo apt update -y
@@ -266,7 +266,7 @@ Now access the app from your local windows pc browser:
 
 ---
 
-## 🏁 Conclusion
+## Conclusion
 
 This project showcases a complete CI/CD workflow integrating:
 
