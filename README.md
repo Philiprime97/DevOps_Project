@@ -183,7 +183,7 @@ This allowed Jenkins to render inline HTML safely and display all reports in the
 ---
 
 ## ☸️ 3. CD Setup – Minikube + ArgoCD (VM2)
-### 🧰 1. Install Minikube
+### 1. Install Minikube
 ```bash
 sudo apt update -y
 sudo apt install -y curl apt-transport-https virtualbox virtualbox-ext-pack
@@ -194,27 +194,30 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 ```bash
 minikube start --driver=docker
 ```
-
-### 🚀 3.  Install kubectl
+### 3. Enable Ingress
+```bash
+minikube addons enable ingress
+```
+### 4.  Install kubectl
 ```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ```
 
-### 🎯 4. Install ArgoCD
+### 5. Install ArgoCD
 ```bash
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
-### 5. Port-Forward ArgoCD:
+### 6. Port-Forward ArgoCD:
 ```bash
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 ```
 
-### 6. Access ArgoCD UI:
+### 7. Access ArgoCD UI:
 http://(VM2-IP):8080
 
-### 7. ArgoCD Login:
+### 8. ArgoCD Login:
 - Username: admin
 - Password: type this command in the terminal 
 
@@ -222,14 +225,14 @@ http://(VM2-IP):8080
 
 ![argocd ui](https://github.com/user-attachments/assets/b8db2130-5cd1-49d3-bf02-3ddec5f543ee)
 
-### 🧱 8. Helm Chart Deployment
+### 9. Helm Chart Deployment
 
 Your Helm chart (stored in GitHub) defines:
 - Deployment
 - Service (type: NodePort or LoadBalancer)
 - ingress
 
-### 🔗 9. Connect ArgoCD App
+### 10. Connect ArgoCD App
 
 In ArgoCD UI → “New App” →
 
@@ -241,7 +244,7 @@ In ArgoCD UI → “New App” →
 
 ![argocd deployment](https://github.com/user-attachments/assets/394ae234-301c-4a0a-8296-a7c06568edf4)
 
-### 🌐 10. Access the Application
+### 11. Access the Application
 
 Since Minikube runs locally:
 ```bash
