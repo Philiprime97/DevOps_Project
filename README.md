@@ -106,12 +106,12 @@ sudo systemctl enable jenkins
 http://(vm1-ip):8080
 
 ### 🧩 2. Jenkins Plugins:
-- Pipeline: Stage Step
-- Blue Ocean
-- HTML Publisher plugin
+- Pipeline: Stage Step - Enables structured Jenkins pipelines with stages and steps for CI/CD workflows.
+- Blue Ocean - Provides a modern, visual interface to easily monitor pipeline stages and build history.
+- HTML Publisher plugin - Allows Jenkins to display HTML reports as build artifacts directly in the interface.
 
 #### 🔑 Jenkins Credentials:
-DockerHub credentials → ID: dockerhub
+DockerHub credentials( ID: dockerhub ) - Used securely by the pipeline to log in and push Docker images without exposing passwords.
 
 ### 🧮 3. Jenkins Pipeline
 
