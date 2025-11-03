@@ -220,12 +220,14 @@ http://(VM2-IP):8080
 
 `kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d`
 
+![argocd ui](https://github.com/user-attachments/assets/b8db2130-5cd1-49d3-bf02-3ddec5f543ee)
+
 ### 🧱 8. Helm Chart Deployment
 
 Your Helm chart (stored in GitHub) defines:
 - Deployment
-- Service (type: NodePort)
-- Configurations
+- Service (type: NodePort or LoadBalancer)
+- ingress
 
 ### 🔗 9. Connect ArgoCD App
 
