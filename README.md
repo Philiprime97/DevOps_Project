@@ -110,7 +110,7 @@ export AWS_ACCESS_KEY_ID=<your-access-key>
 export AWS_SECRET_ACCESS_KEY=<your-secret-key>
 export AWS_DEFAULT_REGION=<your-region>
 ```
-⚠️ Never hardcode AWS credentials inside your code or commit them to GitHub.
+>⚠️ Never hardcode AWS credentials inside your code or commit them to GitHub.
 
 
 ### Dockerization
