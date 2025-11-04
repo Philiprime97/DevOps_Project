@@ -111,8 +111,8 @@ sudo systemctl enable jenkins
 - http://(VM1-IP):8080
 
 ### Jenkins Login:
-- Username: admin
-- Password: type this command in the terminal on **VM1**
+- **Username**: admin
+- **Password**: type this command in the terminal on **VM1**
 
 `sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
 
@@ -211,15 +211,15 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 ```
 ### 6. Port-Forward ArgoCD:
 ```bash
-kubectl port-forward svc/argocd-server -n argocd 8080:443
+kubectl port-forward svc/argocd-server -n argocd 8081:443
 ```
 
 ### 7. Access ArgoCD UI:
-- http://(VM2-IP):8080
+- http://(VM2-IP):8081
 
 ### 8. ArgoCD Login:
-- Username: admin
-- Password: type this command in the terminal 
+- **Username**: admin
+- **Password**: type this command in the terminal 
 
 `kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d`
 
@@ -256,11 +256,11 @@ kubectl get svc -n aws
 Since Minikube runs locally, port-forward on VM2 :
 ```bash
 minikube tunnel
-kubectl port-forward svc/aws 5000:5001 -n aws --address=0.0.0.0
+kubectl port-forward svc/aws 5001:5001 -n aws --address=0.0.0.0
 ```
 
 Now access the app from your local windows pc browser:
-- http://(VM2-IP):5000
+- http://(VM2-IP):5001
 
 ![AWS Resource Viewer - Output](https://github.com/user-attachments/assets/3a3884d6-9cbc-40b2-8eca-f1883a0b970e)
 
