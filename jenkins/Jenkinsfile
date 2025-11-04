@@ -75,7 +75,7 @@ pipeline {
 
                 stage('Linting') {
                     steps {
-                        echo '🔍 Running Python lint and Dockerfile checks...'
+                        echo 'Running Python lint and Dockerfile checks...'
                         sh '''
                         flake8 . > flake8-report.txt || true
                         if [ -f Dockerfile ]; then
@@ -88,7 +88,7 @@ pipeline {
 
                 stage('Scan Source Code') {
                     steps {
-                        echo '🔒 Scanning source code with Trivy and generating HTML...'
+                        echo 'Scanning source code with Trivy and generating HTML...'
                         sh '''
                         wget -q -O html.tpl ${HTML_TEMPLATE}
                         trivy fs . --severity UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL \
@@ -116,7 +116,7 @@ pipeline {
 
         stage('Image Scan') {
             steps {
-                echo '🔒 Scanning Docker image with Trivy...'
+                echo 'Scanning Docker image with Trivy...'
                 sh '''
                 wget -q -O html.tpl ${HTML_TEMPLATE}
                 trivy image --severity UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL \
@@ -151,7 +151,7 @@ pipeline {
 
     post {
         always {
-            echo "🧹 Cleaning up local images..."
+            echo "Cleaning up local images..."
             sh 'docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true'
         }
         success {
