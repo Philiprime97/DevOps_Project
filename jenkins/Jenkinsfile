@@ -77,7 +77,7 @@ pipeline {
                     steps {
                         echo 'Running Python lint and Dockerfile checks...'
                         sh '''
-                        pip3 install flake8
+                        sudo apt install python3-flake8
                         flake8 . > flake8-report.txt || true
                         if [ -f Dockerfile ]; then
                             docker run --rm -i hadolint/hadolint < Dockerfile >> flake8-report.txt 2>&1 || echo "Dockerfile issues" >> flake8-report.txt
