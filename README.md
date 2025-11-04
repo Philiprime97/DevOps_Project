@@ -1,5 +1,6 @@
 # DevOps Final Project
 
+<img width="720" height="401" alt="Picture1" src="https://github.com/user-attachments/assets/eef9f864-d331-497e-a3c2-01836bdfb7b5" />
 
 ## 📘 Project Overview
 
