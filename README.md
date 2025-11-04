@@ -112,7 +112,7 @@ sudo systemctl enable jenkins
 
 ### Jenkins Login:
 - **Username**: admin
-- **Password**: type this command in the terminal on **VM1**
+- **Password**: type this command in the terminal on **VM1** to fetch the initial password
 
 `sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
 
@@ -219,7 +219,7 @@ kubectl port-forward svc/argocd-server -n argocd 8081:443
 
 ### 8. ArgoCD Login:
 - **Username**: admin
-- **Password**: type this command in the terminal 
+- **Password**: type this command in the terminal on **VM2** to fetch the initial password
 
 `kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d`
 
