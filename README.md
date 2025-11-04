@@ -48,19 +48,6 @@ This project showcases a fully automated **CI/CD** pipeline for a **Python** app
     <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/ansible.png" width="50"/><br><b>Ansible</b></td>
     <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/aws.svg.svg" width="50"/><br><b>AWS</b></td>
   </tr>
-  <tr>
-    <td align="center"><img src="https://helm.sh/img/helm.svg" width="50"/><br><b>Helm</b></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/trivy.svg" width="50"/><br><b>Trivy</b></td>
-    <td align="center"><img src="https://www.vectorlogo.zone/logos/docker/docker-official.svg" width="50"/><br><b>Docker Hub</b></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/argocd.png" width="50"/><br><b>ArgoCD</b></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/Prometheus.svg.png" width="50"/><br><b>Prometheus</b></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/grafana.svg" width="50"/><br><b>Grafana</b></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/thanos.png" width="50"/><br><b>Thanos</b></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/harbor.png" width="50"/><br><b>Harbor</b></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/ansible.png" width="50"/><br><b>Ansible</b></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/aws.svg.svg" width="50"/><br><b>AWS</b></td>
 </table>
 
 ## Project Diagram
