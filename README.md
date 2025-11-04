@@ -153,11 +153,11 @@ sudo systemctl enable jenkins
 ###  2. Jenkins Plugins:
 - **Pipeline: Stage View** - Enables structured Jenkins pipelines with stages and steps for CI/CD workflows.
 
-![STAGE VIEW](https://github.com/user-attachments/assets/18de0497-c93f-47cc-9fab-e52ad297c6bd)
+![STAGE VIEW1](https://github.com/user-attachments/assets/207fe00b-69ae-49b3-8b09-60feb1c9785b)
 
 - **Blue Ocean** - Provides a modern, visual interface to easily monitor pipeline stages and build history.
 
-![BLUE OCEAN](https://github.com/user-attachments/assets/ab496ebc-b945-4c5c-bdab-37e7b3359fb8)
+![BLUE OCEAN1](https://github.com/user-attachments/assets/114d46aa-a5f1-446e-9d26-9288574362ff)
 
 - **HTML Publisher plugin** - Allows Jenkins to display HTML reports as build artifacts directly in the interface.
 
@@ -173,14 +173,16 @@ The Jenkinsfile automates the following CI/CD stages:
 
 | Step | Description |
 |------|-------------|
-| 1 | Clone the repository from GitHub |
-| 2 | Run `flake8` for linting |
-| 3 | Scan source code with Trivy |
-| 4 | Build Docker image |
-| 5 | Scan Docker image with Trivy |
-| 6 | Login to Docker Hub |
-| 7 | Push image to Docker Hub |
-| 8 | Cleanup temporary containers/images |
+| 1 | Checks if Docker Installed |
+| 2 | Checks if Trivy Installed |
+| 3 | Clone the repository from GitHub |
+| 4 | Run `flake8` for linting |
+| 5 | Scan source code with Trivy |
+| 6 | Build Docker image |
+| 7 | Scan Docker image with Trivy |
+| 8 | Login to Docker Hub |
+| 9 | Push image to Docker Hub |
+| 10 | Cleanup temporary containers/images |
 
 
 
