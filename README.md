@@ -7,8 +7,7 @@
 
 ## 📘 Project Overview
 
-This project demonstrates a **complete CI/CD pipeline** for a Python-based application that fetches resource data from an AWS account.  
-It integrates **GitHub, Jenkins, Docker, Trivy, Helm, ArgoCD, and Minikube** to automate build, test, security scanning, deployment, and delivery processes.
+This project showcases a fully automated **CI/CD** pipeline for a **Python** application that collects **AWS** resource data. It leverages **GitHub** for version control, **Jenkins** for continuous integration, **Docker** for containerization, **Trivy** for security scanning, and **Helm** with **ArgoCD** on a **Minikube** cluster for streamlined deployment and delivery. The pipeline covers the complete workflow from code linting and vulnerability scanning to image building, registry management, and **Kubernetes** deployment, providing a robust, end-to-end DevOps solution.
 
 ---
 
@@ -21,6 +20,38 @@ It integrates **GitHub, Jenkins, Docker, Trivy, Helm, ArgoCD, and Minikube** to 
 | **Local PC (Windows)**       | Development machine, source code editing, and GitHub pushes |
 | **VM1 (Jenkins Server)**     | CI pipeline: code linting, image building, scanning, and pushing to Docker Hub |
 | **VM2 (Minikube + ArgoCD)**  | CD environment: deploys Helm chart of the app to Kubernetes cluster |
+
+## Technologies Used
+
+<table>
+  <tr>
+    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/Ubuntu.svg.png" width="50"/><br><b>Ubuntu 24.04 LTS</b></td>
+    <td align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="50"/><br><b>Python 3</b></td>
+    <td align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" width="50"/><br><b>VS Code</b></td>
+    <td align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="50"/><br><b>Git</b></td>
+    <td align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="50"/><br><b>GitHub</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/docker_logo_icon_170244.png" width="70"/><br><b>Docker</b></td>
+    <td align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" width="50"/><br><b>Jenkins</b></td>
+    <td align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" width="50"/><br><b>Terraform</b></td>
+    <td align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" width="50"/><br><b>Minikube / K8s</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/vmware.svg" width="50"/><br><b>VMware</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://helm.sh/img/helm.svg" width="50"/><br><b>Helm</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/trivy.svg" width="50"/><br><b>Trivy</b></td>
+    <td align="center"><img src="https://www.vectorlogo.zone/logos/docker/docker-official.svg" width="50"/><br><b>Docker Hub</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/argocd.png" width="50"/><br><b>ArgoCD</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/Prometheus.svg.png" width="50"/><br><b>Prometheus</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/grafana.svg" width="50"/><br><b>Grafana</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/thanos.png" width="50"/><br><b>Thanos</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/harbor.png" width="50"/><br><b>Harbor</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/ansible.png" width="50"/><br><b>Ansible</b></td>
+    <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/aws.svg.svg" width="50"/><br><b>AWS</b></td>
+</table>
 
 ## Project Diagram
 ![DevOps Project 1 Architecture Diagram](https://github.com/user-attachments/assets/392ead60-0b86-4b66-8374-5ca8671352ea)
