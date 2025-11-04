@@ -5,7 +5,7 @@
 </div>
 
 
-## 📘 Project Overview
+## Project Overview
 
 This project showcases a fully automated **CI/CD** pipeline for a **Python** application that collects **AWS** resource data. It leverages **GitHub** for version control, **Jenkins** for continuous integration, **Docker** for containerization, **Trivy** for security scanning, and **Helm** with **ArgoCD** on a **Minikube** cluster for streamlined deployment and delivery. The pipeline covers the complete workflow from code linting and vulnerability scanning to image building, registry management, and **Kubernetes** deployment, providing a robust, end-to-end DevOps solution.
 
@@ -108,7 +108,7 @@ AWS access is handled securely through environment variables:
 ```bash
 export AWS_ACCESS_KEY_ID=<your-access-key>
 export AWS_SECRET_ACCESS_KEY=<your-secret-key>
-export AWS_DEFAULT_REGION=eu-central-1
+export AWS_DEFAULT_REGION=<your-region>
 ```
 ⚠️ Never hardcode AWS credentials inside your code or commit them to GitHub.
 
