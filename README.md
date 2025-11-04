@@ -38,7 +38,7 @@ This project showcases a fully automated **CI/CD** pipeline for a **Python** app
   </tr>
   <tr>
     <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/docker_logo_icon_170244.png" width="70"/><br><b>Docker</b></td>
-    <td align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" width="50"/><br><b>Jenkins</b></td>
+    <td align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" width="70"/><br><b>Jenkins</b></td>
     <td align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" width="50"/><br><b>Terraform</b></td>
     <td align="center"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" width="50"/><br><b>Minikube / K8s</b></td>
     <td align="center"><img src="https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/images/vmware.svg" width="50"/><br><b>VMware</b></td>
