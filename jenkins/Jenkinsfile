@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME     = 'philiprime97/aws'   // My Docker Hub repo
-        IMAGE_TAG      = 'v1'                     // Image tag version
-        CREDENTIALS_ID_1 = 'dockerhub'              // Jenkins Docker Hub credentials ID
-        CREDENTIALS_ID_2 = 'github-creds'
+        IMAGE_NAME     = 'philiprime97/aws-html'   // My Docker Hub repo
+        IMAGE_TAG      = 'v2'                     // Image tag version
+        CREDENTIALS_ID_1 = 'dockerhub'              // Jenkins - Docker Hub credentials ID
+        CREDENTIALS_ID_2 = 'github-creds'           // Jenkins - GitHub credentials ID
         HTML_TEMPLATE  = 'https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/html.tpl' // HTML custom template
     }
 
