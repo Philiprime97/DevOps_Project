@@ -166,7 +166,7 @@ pipeline {
                     git checkout -B argocd origin/argocd || git checkout -b argocd
         
                     # Copy the Helm folder from main branch
-                    git checkout main -- helm/
+                    git checkout master -- helm/
         
                     # Update values.yaml with new image and tag
                     sed -i "s|^  imagename:.*|  imagename: ${IMAGE_NAME}|" helm/values.yaml
