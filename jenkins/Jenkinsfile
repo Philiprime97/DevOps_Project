@@ -4,7 +4,8 @@ pipeline {
     environment {
         IMAGE_NAME     = 'philiprime97/aws'   // My Docker Hub repo
         IMAGE_TAG      = 'v1'                     // Image tag version
-        CREDENTIALS_ID = 'dockerhub'              // Jenkins Docker Hub credentials ID
+        CREDENTIALS_ID_1 = 'dockerhub'              // Jenkins Docker Hub credentials ID
+        CREDENTIALS_ID_2 = 'github-creds'
         HTML_TEMPLATE  = 'https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/html.tpl' // HTML custom template
     }
 
@@ -130,7 +131,7 @@ pipeline {
 
         stage('Login to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: "${CREDENTIALS_ID}", usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                withCredentials([usernamePassword(credentialsId: "${CREDENTIALS_ID_1}", usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh '''
                     echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
                     '''
@@ -150,7 +151,7 @@ pipeline {
 
         stage('Push Helm to ArgoCD Branch') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'github-creds', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
+                withCredentials([usernamePassword(credentialsId: "${CREDENTIALS_ID_2}, usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
                     sh '''
                     echo "🔁 Updating Helm chart in argocd branch..."
         
