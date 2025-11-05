@@ -147,6 +147,40 @@ pipeline {
                 }
             }
         }
+
+        stage('Push Helm to ArgoCD Branch') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'github-creds', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
+                    sh '''
+                    echo "🔁 Updating Helm chart in argocd branch..."
+        
+                    # Configure Git
+                    git config --global user.name "Jenkins CI"
+                    git config --global user.email "jenkins@ci.local"
+        
+                    # Fetch all branches
+                    git fetch origin
+        
+                    # Checkout argocd branch (create if doesn't exist)
+                    git checkout -B argocd origin/argocd || git checkout -b argocd
+        
+                    # Copy the Helm folder from main branch
+                    git checkout main -- helm/
+        
+                    # Update values.yaml with new image and tag
+                    sed -i "s|^\\([[:space:]]*name:.*\\)|  name: ${IMAGE_NAME}|" helm/values.yaml
+                    sed -i "s|^\\([[:space:]]*tag:.*\\)|  tag: ${IMAGE_TAG}|" helm/values.yaml
+        
+                    # Commit and push
+                    git add helm/
+                    git commit -m "Update Helm chart with ${IMAGE_NAME}:${IMAGE_TAG}" || echo "No changes to commit"
+                    git push https://${GIT_USER}:${GIT_PASS}@github.com/Philiprime97/DevOps_Project.git argocd --force
+        
+                    echo "✅ Helm chart pushed to argocd branch!"
+                    '''
+                }
+            }
+        }
     }
 
     post {
