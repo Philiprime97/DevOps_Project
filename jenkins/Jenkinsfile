@@ -168,9 +168,9 @@ pipeline {
                     git checkout main -- helm/
         
                     # Update values.yaml with new image and tag
-                    sed -i "s|^\\([[:space:]]*name:.*\\)|  name: ${IMAGE_NAME}|" helm/values.yaml
-                    sed -i "s|^\\([[:space:]]*tag:.*\\)|  tag: ${IMAGE_TAG}|" helm/values.yaml
-        
+                    sed -i "s|^  imagename:.*|  imagename: ${IMAGE_NAME}|" helm/values.yaml
+                    sed -i "s|^  imagetag:.*|  imagetag: ${IMAGE_TAG}|" helm/values.yaml
+
                     # Commit and push
                     git add helm/
                     git commit -m "Update Helm chart with ${IMAGE_NAME}:${IMAGE_TAG}" || echo "No changes to commit"
