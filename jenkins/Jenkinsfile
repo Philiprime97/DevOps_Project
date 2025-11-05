@@ -160,7 +160,7 @@ pipeline {
                     git config --global user.email "jenkins@ci.local"
         
                     # Fetch all branches
-                    git fetch origin
+                    git fetch --all
         
                     # Checkout argocd branch (create if doesn't exist)
                     git checkout -B argocd origin/argocd || git checkout -b argocd
