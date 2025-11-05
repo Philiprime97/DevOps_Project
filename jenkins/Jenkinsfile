@@ -151,7 +151,7 @@ pipeline {
 
         stage('Push Helm to ArgoCD Branch') {
             steps {
-                withCredentials([usernamePassword(credentialsId: "${CREDENTIALS_ID_2}, usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
+                withCredentials([usernamePassword(credentialsId: "${CREDENTIALS_ID_2}", usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
                     sh '''
                     echo "🔁 Updating Helm chart in argocd branch..."
         
@@ -171,7 +171,7 @@ pipeline {
                     # Update values.yaml with new image and tag
                     sed -i "s|^  imagename:.*|  imagename: ${IMAGE_NAME}|" helm/values.yaml
                     sed -i "s|^  imagetag:.*|  imagetag: ${IMAGE_TAG}|" helm/values.yaml
-
+        
                     # Commit and push
                     git add helm/
                     git commit -m "Update Helm chart with ${IMAGE_NAME}:${IMAGE_TAG}" || echo "No changes to commit"
