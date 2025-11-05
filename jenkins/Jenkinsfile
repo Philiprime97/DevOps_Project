@@ -187,6 +187,7 @@ pipeline {
         always {
             echo "Cleaning up local images..."
             sh 'docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true'
+            sh 'docker system prune -f'
         }
         success {
             echo "✅ Successfully scanned and pushed ${IMAGE_NAME}:${IMAGE_TAG} to Docker Hub"
