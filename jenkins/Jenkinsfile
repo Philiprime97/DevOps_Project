@@ -151,7 +151,7 @@ pipeline {
 
         stage('Push Helm to ArgoCD Branch') {
             steps {
-                withCredentials([usernamePassword(credentialsId: "${CREDENTIALS_ID_2}", usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
+                withCredentials([usernamePassword(credentialsId: ${CREDENTIALS_ID_2}, usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
                     sh '''
                     echo "🔁 Updating Helm chart in argocd branch..."
         
