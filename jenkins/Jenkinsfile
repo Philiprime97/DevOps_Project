@@ -65,7 +65,7 @@ pipeline {
         }
 
 
-        stage('Checkout Code') {
+        stage('Git Clone') {
             steps {
                 checkout scm
             }
