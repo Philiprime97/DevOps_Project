@@ -1,0 +1,198 @@
+/* ----------- BACKGROUND ----------- */
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+
+    background-image: url("../images/cloud2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(8px);
+}
+
+/* ----------- LOGIN BOX ----------- */
+@keyframes flyIn {
+    0% {opacity:0; transform:translateY(-50px);}
+    100% {opacity:1; transform:translateY(0);}
+}
+
+.login-box {
+    width: 400px;
+    padding: 100px 40px 40px 40px;
+    background: rgba(255,255,255,0.6); /* lower alpha = more transparent */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    position: relative;
+    animation: flyIn 1.5s ease-out;
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-top: 20px; /* adjust if you want spacing below the logos */
+    margin-bottom: 20px; /* optional spacing before inputs */
+    font-size: 35px; /* change to whatever size you want */
+}
+
+.login-logo1 {
+    width: 110px;
+    position: absolute;
+    top: 35px;
+    left: 35px;
+}
+
+.login-logo2 {
+    width: 90px;
+    position: absolute;
+    top: 25px;
+    right: 35px;
+}
+
+.login-box label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+
+/* ----------- INPUT ICONS ----------- */
+.input-icon {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-icon input {
+    width: 100%;
+    padding: 10px 40px 10px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.input-icon img {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    opacity: 0.7;
+    pointer-events: none; /* prevent clicking on image from blocking input */
+}
+
+/* ----------- DROPDOWN ----------- */
+.dropdown { 
+    position: relative; 
+    margin-bottom: 20px; 
+}
+
+.dropdown-btn {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    background-color: #fff;  /* white background */
+    color: #888; /* gray for placeholder */
+}
+
+.dropdown-btn::after {
+    content: "▼";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555;
+}
+
+.dropdown-content {
+    display: none;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    max-height: 300px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    z-index: 50;
+}
+
+.optgroup-label {
+    padding: 6px 10px;
+    font-weight: bold;
+    background: #ecf0f1;
+    cursor: default;      /* show default cursor */
+}
+
+/* Only regions hover, not continents */
+.dropdown-content div:not(.optgroup-label):hover {
+    background-color: #2980b9; /* highlight color */
+    color: white;
+    border-radius: 4px;
+    transform: translateX(5px); /* slight slide effect */
+    transition: 0.2s; /* smooth animation */
+}
+
+.dropdown-content div {
+    padding: 8px 10px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+
+/* ----------- Login BUTTON ----------- */
+input[type="submit"] {
+    width: 50%;
+    padding: 12px;
+    margin: 5px auto;
+    border: none;
+    border-radius: 6px;
+    font-size: 22px;
+    background-color: #2980b9;
+    color: white;
+    cursor: pointer;
+    display: block;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    background-color: #1c5980;
+    transform: scale(1.05);
+}
+
+
+/* ----------- LOGIN BUTTON WITH ICON ----------- */
+.login-btn {
+    width: 50%;
+    padding: 12px;
+    margin: 5px auto;
+    border: none;
+    border-radius: 6px;
+    font-size: 22px;
+    background-color: #2980b9;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* space between icon and text */
+    transition: 0.2s;
+    margin-top: 40px;
+}
+
+.login-btn:hover {
+    background-color: #1c5980;
+    transform: scale(1.05);
+}
+
+.btn-icon {
+    width: 30px;
+    height: 30px;
+}
