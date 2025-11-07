@@ -24,7 +24,7 @@ aws:
   secretAccessKey: ""
   region: "eu-north-1"
 
-  podMonitor:
+podMonitor:
   port: http
   path: /metrics
   interval: 30s
