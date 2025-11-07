@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AWS Resources</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div style="text-align:right;margin-bottom:20px;">
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+
+    <div class="header">
+        <div class="header-left">
+            <img src="{{ url_for('static', filename='images/aws.png') }}">
+        </div>
+
+        <div class="header-center">
+            <h1>AWS Resource Viewer</h1>
+        </div>
+
+        <div class="header-right">
+            <img src="{{ url_for('static', filename='images/docker.svg') }}">
+        </div>
+    </div>
+
+    <!-- EC2 -->
+    <h1>Running EC2 Instances</h1>
+    <div class="table-wrapper">
+        <table>
+            <tr><th>Name</th><th>ID</th><th>State</th><th>Type</th><th>Public IP</th></tr>
+            {% for instance in instance_data %}
+            <tr>
+                <td>{{ instance.Name }}</td>
+                <td>{{ instance.ID }}</td>
+                <td>
+                    <span class="status {{ instance.State }}">
+                        {{ instance.State }}
+                    </span>
+                </td>
+                <td>{{ instance.Type }}</td>
+                <td>{{ instance["Public IP"] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <!-- VPC -->
+    <h1>VPCs</h1>
+    <div class="table-wrapper">
+        <table>
+            <tr><th>VPC ID</th><th>CIDR</th></tr>
+            {% for vpc in vpc_data %}
+            <tr>
+                <td>{{ vpc["VPC ID"] }}</td>
+                <td>{{ vpc.CIDR }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <!-- Subnets -->
+    <h1>Subnets</h1>
+    <div class="table-wrapper">
+        <table>
+            <tr><th>ID</th><th>VPC</th><th>CIDR</th><th>AZ</th></tr>
+            {% for subnet in subnet_data %}
+            <tr>
+                <td>{{ subnet["Subnet ID"] }}</td>
+                <td>{{ subnet["VPC ID"] }}</td>
+                <td>{{ subnet.CIDR }}</td>
+                <td>{{ subnet["Availability Zone"] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <!-- Load Balancers -->
+    <h1>Load Balancers</h1>
+    <div class="table-wrapper">
+        <table>
+            <tr><th>Name</th><th>DNS</th></tr>
+            {% for lb in lb_data %}
+            <tr>
+                <td>{{ lb["LB Name"] }}</td>
+                <td>{{ lb["DNS Name"] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <!-- AMIs -->
+    <h1>Available AMIs</h1>
+    <div class="table-wrapper">
+        <table>
+            <tr><th>AMI ID</th><th>Name</th></tr>
+            {% for ami in ami_data %}
+            <tr>
+                <td>{{ ami["AMI ID"] }}</td>
+                <td>{{ ami.Name }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
