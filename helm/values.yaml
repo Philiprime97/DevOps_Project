@@ -23,3 +23,9 @@ aws:
   accessKeyId: ""
   secretAccessKey: ""
   region: "eu-north-1"
+
+  podMonitor:
+  port: http
+  path: /metrics
+  interval: 30s
+  release: prometheus 
