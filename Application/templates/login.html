@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AWS Login</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <script src="{{ url_for('static', filename='js/dropdown.js') }}" defer></script>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <img src="{{ url_for('static', filename='images/aws.png') }}" class="login-logo1">
+    <img src="{{ url_for('static', filename='images/Cloud Solutions.gif') }}" class="login-logo2">
+
+    <h2>AWS Login</h2>
+
+    <form method="POST">
+
+        <label>Access Key:</label>
+        <div class="input-icon">
+            <input type="text" name="access_key" placeholder="Enter your AWS Access Key" required>
+            <img src="{{ url_for('static', filename='images/key.png') }}">
+        </div>
+
+        <label>Secret Key:</label>
+        <div class="input-icon">
+            <input type="password" name="secret_key" placeholder="Enter your AWS Secret Key" required>
+            <img src="{{ url_for('static', filename='images/locked.png') }}">
+        </div>
+
+        <label>Region:</label>
+        <div class="dropdown">
+            <div class="dropdown-btn" id="selected" data-placeholder="Enter your AWS Region">Enter your AWS Region</div>
+            <div class="dropdown-content">
+
+                {% for continent, regions in region_groups.items() %}
+                    <div class="optgroup-label">{{ continent }}</div>
+
+                    {% for code, city in regions.items() %}
+                        <div data-value="{{ code }}">
+                            <span>{{ city }}</span>
+                            <span>{{ code }}</span>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <input type="hidden" id="region" name="region">
+        <button type="submit" class="login-btn">
+            <img src="{{ url_for('static', filename='images/login-icon1.png') }}" class="btn-icon">
+            Login
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
