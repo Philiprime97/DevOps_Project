@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: {{ .Release.Name }}-podmonitor
+  labels:
+    release: {{ .Values.podMonitor.release }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "app.labels" . | nindent 6 }}
+  podMetricsEndpoints:
+    - port: {{ .Values.podMonitor.port }}
+      path: {{ .Values.podMonitor.path }}
+      interval: {{ .Values.podMonitor.interval }}
