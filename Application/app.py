@@ -107,7 +107,11 @@ def logout():
 # ---------------------------------------------------------
 @app.route("/")
 def home():
-
+    
+    # ✅ Redirect user if NOT logged in
+    if "access_key" not in session:
+        return redirect("/login")
+        
     ec2, elb = get_clients()
     instance_data, vpc_data, subnet_data, lb_data, ami_data = [], [], [], [], []
 
