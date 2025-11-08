@@ -7,8 +7,9 @@ data:
   objstore.yml: |
     type: S3
     config:
-      bucket: prometheus
-      endpoint: minio.thanos.svc.cluster.local:9000
-      access_key: minio
-      secret_key: minio123
-      insecure: true
+      bucket: my-thanos-bucket
+      endpoint: s3.amazonaws.com
+      access_key: <AWS_ACCESS_KEY_ID>
+      secret_key: <AWS_SECRET_ACCESS_KEY>
+      region: us-east-1
+      insecure: false
