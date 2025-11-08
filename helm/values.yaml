@@ -22,7 +22,7 @@ ingress:
 aws:
   accessKeyId: ""
   secretAccessKey: ""
-  region: ""
+  region: "eu-north-1"
 
 podMonitor:
   port: http
