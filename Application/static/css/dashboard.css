@@ -117,9 +117,9 @@ tr:hover {
     min-width: 80px;            /* optional: make all tags same width */
 }
 
-.running { background-color: #27ae60; }
-.stopped { background-color: #c0392b; }
-.pending { background-color: #f39c12; }
+.Running { background-color: #27ae60; }
+.Stopped { background-color: #c0392b; }
+.Pending { background-color: #f39c12; }
 
 /* Center content in the State column */
 table td:nth-child(3) {  /* assuming State is the 3rd column */
