@@ -1,0 +1,15 @@
+# helm-values.yaml
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+
+grafana:
+  adminUser: admin
+  adminPassword: prom-operator
+  service:
+    type: NodePort
+  sidecar:
+    dashboards:
+      enabled: true
+      label: grafana_dashboard
