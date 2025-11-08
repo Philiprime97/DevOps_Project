@@ -5,7 +5,7 @@ deployment:
   #imagetag: v1
   pullPolicy: IfNotPresent
   #pulling from dockerhub: 
-  imagename: philiprime97/aws-html
+  imagename: philiprime97/aws-web
   imagetag: v1
 
 service:
