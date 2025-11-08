@@ -22,7 +22,7 @@ spec:
         - --prometheus.url=http://monitoring-stack-kube-prometheus-prometheus.monitoring.svc:9090
         - --objstore.config-file=/etc/thanos/objstore.yml
         - --log.level=info
-      env:
+        env:
         - name: AWS_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
@@ -34,14 +34,10 @@ spec:
               name: thanos-s3-secret
               key: secret_key
         - name: AWS_REGION
-      valueFrom:
-        secretKeyRef:
-          name: thanos-s3-secret
-          key: region
-      valueFrom:
-        secretKeyRef:
-          name: thanos-s3-secret
-          key: region
+          valueFrom:
+            secretKeyRef:
+              name: thanos-s3-secret
+              key: region
         volumeMounts:
         - name: prometheus-data
           mountPath: /prometheus
