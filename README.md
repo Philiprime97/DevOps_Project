@@ -295,8 +295,10 @@ kubectl port-forward svc/aws 5001:5001 -n aws --address=0.0.0.0
 
 Now access the app from your local windows pc browser:
 - http://(VM2-IP):5001
+  
+![app-ui1](https://github.com/user-attachments/assets/6e1e0fe6-7faa-4ea7-978f-cc3a6606bb85)
 
-![AWS Resource Viewer - Output](https://github.com/user-attachments/assets/3a3884d6-9cbc-40b2-8eca-f1883a0b970e)
+![app-ui2](https://github.com/user-attachments/assets/0ed93253-7ab5-4b9b-8ddc-c2907bbc9def)
 
 ---
 
