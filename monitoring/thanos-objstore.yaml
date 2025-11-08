@@ -9,7 +9,7 @@ data:
     config:
       bucket: my-thanos-bucket
       endpoint: s3.amazonaws.com
-      access_key: <AWS_ACCESS_KEY_ID>
-      secret_key: <AWS_SECRET_ACCESS_KEY>
-      region: us-east-1
+      access_key: ${AWS_ACCESS_KEY_ID}
+      secret_key: ${AWS_SECRET_ACCESS_KEY}
+      region: ${AWS_REGION}
       insecure: false
