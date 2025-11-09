@@ -6,7 +6,7 @@ deployment:
   pullPolicy: IfNotPresent
   #pulling from dockerhub: 
   imagename: philiprime97/aws-web
-  imagetag: v2
+  imagetag: ${BUILD_NUMBER}
 
 service:
   type: NodePort
