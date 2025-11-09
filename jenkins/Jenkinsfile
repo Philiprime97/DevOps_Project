@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME     = 'philiprime97/aws-web'   // My Docker Hub repo
-        IMAGE_TAG      = '${BUILD_NUMBER}'                     // Image tag version
+        IMAGE_TAG      = "${BUILD_NUMBER}"                     // Image tag version
         CREDENTIALS_ID_1 = 'dockerhub'              // Jenkins - Docker Hub credentials ID
         CREDENTIALS_ID_2 = 'github-creds'           // Jenkins - GitHub credentials ID
         HTML_TEMPLATE  = 'https://raw.githubusercontent.com/Philiprime97/DevOps_Project/main/html.tpl' // HTML Report - custom template
