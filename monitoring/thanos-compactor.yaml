@@ -39,7 +39,7 @@ spec:
       volumes:
         - name: objstore-config
           secret:
-            secretName: thanos-objstore-config # 👇 Secret_Name - contains your S3 credentials
+            secretName: thanos-objstore-config   # 👇 Secret_Name - contains your S3 credentials
         - name: data
           persistentVolumeClaim:
             claimName: thanos-compact-pvc
@@ -63,6 +63,7 @@ metadata:
   labels:
     app: thanos-compactor
 spec:
+  type: NodePort
   ports:
     - name: http
       port: 10902
