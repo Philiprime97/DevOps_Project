@@ -301,6 +301,9 @@ Now access the app from your local windows pc browser:
 ![app-ui2](https://github.com/user-attachments/assets/0ed93253-7ab5-4b9b-8ddc-c2907bbc9def)
 
 ---
+4. Monitorng Setup – Prometheus ,Grafana and Thanos on Minikube (VM2)
+In this workflow, we will extend **Prometheus** monitoring with **Thanos** to enable long-term, centralized storage and global querying of metrics. To achieve this, we will create an **S3 bucket** for storing Prometheus blocks, set up a dedicated **IAM user** with the necessary S3 permissions, and configure Prometheus with a **Thanos sidecar** to upload data and expose gRPC endpoints. We will deploy **Thanos components—including Query, Compactor, and optionally Store Gateway** to aggregate live and historical metrics. Finally, **Grafana** will be configured to use **Thanos Query** as a datasource, allowing dashboards to display both live metrics from Prometheus and historical data from S3. Required elements include a Kubernetes cluster, Prometheus deployment, S3 bucket and credentials, **Thanos manifests** or **Helm values**, and **Grafana** connected to **Thanos Query**.
+
 
 ## Conclusion
 
