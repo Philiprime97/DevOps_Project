@@ -311,6 +311,8 @@ Thanos extends Prometheus into a highly available, long-term, global monitoring 
 It adds several components around Prometheus to solve major limitations like scalability, HA, and long-term storage.
 Prometheus by itself stores metrics locally on disk and can only collect and query data from a single server. Thanos solves these limitations by introducing multiple components that work together around Prometheus.
 
+<img width="1601" height="860" alt="97e49180-661b-11e9-9882-fdc44b74debd" src="https://github.com/user-attachments/assets/44d8adf1-aaa8-4832-8dd9-3437b59785c9" />
+
 ## How Thanos Works
 
 ### 1. Prometheus (Scraper + TSDB)
