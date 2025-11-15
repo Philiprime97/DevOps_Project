@@ -388,7 +388,33 @@ This user will authenticate from:
  * Thanos Compactor
 ### 3. Attach the minimum required IAM policy
 Give the user only access to the specific bucket:
+```json
 
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"s3:ListBucket"
+			],
+			"Resource": [
+				"arn:aws:s3:::thanos-metrics-lab"
+			]
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"s3:GetObject",
+				"s3:PutObject",
+				"s3:DeleteObject"
+			],
+			"Resource": [
+				"arn:aws:s3:::thanos-metrics-lab/*"
+			]
+		}
+	]
+}
+```
 ________________________________________
 ## 2. Clone the Repository (Manual Deployment Required)
 We deploy manually (not via ArgoCD) because the AWS credentials must be stored locally using Kubernetes Secrets — never stored inside the repo, as ArgoCD cannot sync private secrets.
