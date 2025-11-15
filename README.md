@@ -394,8 +394,7 @@ You should see:
  * Thanos Compactor
  * Grafana
 
-If services are not using NodePort
-Convert them manually:
+If services are not using 'NodePort', Convert them manually:
 ```bash
 kubectl edit svc <service-name> -n monitoring
 ```
