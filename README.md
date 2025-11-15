@@ -315,11 +315,12 @@ ________________________________________
 ________________________________________
 ## 1. AWS Setup — S3 Bucket + IAM User
 ### 1. Create an S3 bucket
-```bash
 Example name:
+```bash
 thanos-metrics-lab
 ```
 ### 2. Create a dedicated IAM user
+Example name:
 ```bash
 thanos-storage-user
 ```
@@ -348,7 +349,7 @@ ________________________________________
 Prometheus with Thanos sidecar
 ```bash
 helm upgrade --install prometheus prometheus-community/prometheus \
-  -f values.yaml -n monitoring```
+  -f values.yaml -n monitoring
 ```
 
 Grafana
