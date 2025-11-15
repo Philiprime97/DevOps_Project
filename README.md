@@ -311,7 +311,7 @@ Thanos extends Prometheus into a highly available, long-term, global monitoring 
 It adds several components around Prometheus to solve major limitations like scalability, HA, and long-term storage.
 Prometheus by itself stores metrics locally on disk and can only collect and query data from a single server. Thanos solves these limitations by introducing multiple components that work together around Prometheus.
 
-## How Thanos Works (High-Level Architecture)
+## How Thanos Works
 
 ### 1. Prometheus (Scraper + TSDB)
 Prometheus continues to scrape targets and stores time-series data locally in its **TSDB (Time Series Database)**.
@@ -499,32 +499,6 @@ This makes Grafana read:
  
  Import dashboards or build custom ones as needed.
 ________________________________________
-# Key Architecture Concepts
-## Prometheus
- * Scrapes metrics from exporters
- * Stores blocks locally in TSDB
- * Runs a Thanos Sidecar
-## Thanos Sidecar
- * Reads Prometheus TSDB
- * Uploads blocks to S3 (if enabled)
- * Exposes Prometheus metrics via gRPC to Thanos Query
-## Thanos Store Gateway
- * Reads historical blocks from S3
- * Feeds historical metrics to Thanos Query
-## Thanos Compactor
- * Deduplicates blocks
- * Downsamples
- * Enforces retention
-## Thanos Query
- * Federates all data sources:
-   * Prometheus (live)
-   * S3 (historical)
-   * Other clusters (optional)
- * Grafana connects only to Query
-## Grafana
- * Uses Thanos Query as datasource
- * Displays real-time + historical metrics seamlessly
-
 
 ## Conclusion
 
