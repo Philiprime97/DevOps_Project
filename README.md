@@ -348,8 +348,7 @@ ________________________________________
 ## 4. Install Prometheus + Grafana
 Prometheus with Thanos sidecar
 ```bash
-helm upgrade --install prometheus prometheus-community/prometheus \
-  -f values.yaml -n monitoring
+helm upgrade --install prometheus prometheus-community/prometheus -f values.yaml -n monitoring
 ```
 
 Grafana
