@@ -354,6 +354,10 @@ Instead of connecting directly to Prometheus, Grafana connects to **Thanos Query
  * Real-time data from Prometheus
  * Long-term historical data from S3
  * Data from multiple Prometheus instances (multi-cluster monitoring)
+
+## Diagram
+
+![Thanos Architecture](https://github.com/user-attachments/assets/65501322-52e9-4ef5-b08e-2383cd2fcfda)
 ________________________________________
 
 ## Repository Structure
