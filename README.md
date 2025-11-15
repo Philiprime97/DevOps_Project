@@ -389,7 +389,7 @@ This user will authenticate from:
 ### 3. Attach the minimum required IAM policy
 Give the user only access to the specific bucket:
 ```json
-
+	{
 	"Version": "2012-10-17",
 	"Statement": [
 		{
