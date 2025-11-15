@@ -306,12 +306,14 @@ In this workflow, we will extend **Prometheus** monitoring with **Thanos** to en
 
 ________________________________________
 ## Repository Structure
+```bash
 /monitoring
   ├─ thanos-compactor.yaml      # Thanos Compactor Deployment
   ├─ thanos-query.yaml          # Thanos Query Deployment
   ├─ thanos-secret.yaml         # Secret containing S3 bucket configuration
   ├─ thanos-store.yaml          # Thanos Store Gateway Deployment
   ├─ values.yaml                # Prometheus config + Thanos Sidecar configuration
+```
 ________________________________________
 ## 1. AWS Setup — S3 Bucket + IAM User
 ### 1. Create an S3 bucket
