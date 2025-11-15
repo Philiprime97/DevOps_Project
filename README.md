@@ -304,6 +304,176 @@ Now access the app from your local windows pc browser:
 ## 4. Monitorng Setup – Prometheus ,Grafana and Thanos on Minikube (VM2)
 In this workflow, we will extend **Prometheus** monitoring with **Thanos** to enable long-term, centralized storage and global querying of metrics. To achieve this, we will create an **S3 bucket** for storing Prometheus blocks, set up a dedicated **IAM user** with the necessary S3 permissions, and configure Prometheus with a **Thanos sidecar** to upload data and expose gRPC endpoints. We will deploy **Thanos components—including Query, Compactor, and optionally Store Gateway** to aggregate live and historical metrics. Finally, **Grafana** will be configured to use **Thanos Query** as a datasource, allowing dashboards to display both live metrics from Prometheus and historical data from S3. Required elements include a Kubernetes cluster, Prometheus deployment, S3 bucket and credentials, **Thanos manifests** or **Helm values**, and **Grafana** connected to **Thanos Query**.
 
+________________________________________
+## Repository Structure
+/monitoring
+  ├─ thanos-compactor.yaml      # Thanos Compactor Deployment
+  ├─ thanos-query.yaml          # Thanos Query Deployment
+  ├─ thanos-secret.yaml         # Secret containing S3 bucket configuration
+  ├─ thanos-store.yaml          # Thanos Store Gateway Deployment
+  ├─ values.yaml                # Prometheus config + Thanos Sidecar configuration
+________________________________________
+## 1. AWS Setup — S3 Bucket + IAM User
+### 1. Create an S3 bucket
+```bash
+Example name:
+thanos-metrics-lab
+```
+### 2. Create a dedicated IAM user
+```bash
+thanos-storage-user
+```
+Enable programmatic access.
+This user will authenticate from:
+ * Thanos Sidecar
+ * Thanos Store
+ * Thanos Compactor
+### 3. Attach the minimum required IAM policy
+Give the user only access to the specific bucket:
+
+________________________________________
+## 2. Clone the Repository (Manual Deployment Required)
+We deploy manually (not via ArgoCD) because the AWS credentials must be stored locally using Kubernetes Secrets — never stored inside the repo, as ArgoCD cannot sync private secrets.
+```bash
+git clone https://github.com/your-username/your-repo.git
+cd monitoring
+```
+________________________________________
+## 3. Update Helm Repositories
+```bash
+helm repo update
+```
+________________________________________
+## 4. Install Prometheus + Grafana
+Prometheus with Thanos sidecar
+```bash
+helm upgrade --install prometheus prometheus-community/prometheus \
+  -f values.yaml -n monitoring```
+```
+
+Grafana
+```bash
+helm upgrade --install grafana grafana/grafana -n monitoring
+```
+________________________________________
+## 5. Apply Thanos Configuration and Components
+### 1. Create Kubernetes Secret for S3
+Your thanos-secret.yaml must contain:
+ * access key
+ * secret key
+ * bucket name
+ * region
+Apply it:
+```bash
+kubectl apply -f thanos-secret.yaml
+```
+### 2. Deploy Thanos Query
+```bash
+kubectl apply -f thanos-query.yaml
+```
+### 3. Deploy Thanos Store Gateway
+```bash
+kubectl apply -f thanos-store.yaml
+```
+### 4. Deploy Thanos Compactor
+```bash
+kubectl apply -f thanos-compactor.yaml
+```
+________________________________________
+## 6. Verify Deployments
+```bash
+kubectl get pods -n monitoring
+kubectl get svc -n monitoring
+```
+You should see:
+ * Prometheus
+ * Thanos Sidecar (inside Prometheus pod)
+ * Thanos Query
+ * Thanos Store Gateway
+ * Thanos Compactor
+ * Grafana
+
+If services are not using NodePort
+Convert them manually:
+```bash
+kubectl edit svc <service-name> -n monitoring
+```
+Change:
+```bash
+type: ClusterIP
+```
+To:
+```bash
+type: NodePort
+```
+________________________________________
+## 7. Configure Grafana
+After Grafana is installed, you need to access its web UI to add the Thanos datasource.
+
+If your Grafana Service is configured as NodePort:
+```bash
+kubectl get svc grafana -n monitoring
+```
+Output example:
+```bash
+grafana   NodePort   10.96.12.22   <none>   80:32188/TCP
+```
+Run Port-Forward:
+```bash
+kubectl port-forward -n monitoring svc/grafana 3000:80
+```
+Get the service details:
+### 1.	Open Grafana in browser
+http://VM_IP:3000
+
+### 2. Grafana Login
+
+Default credentials:
+
+ * **Username**: admin
+
+ * **Password**: admin (or auto-generated — run below to get it)
+ ```bash
+ kubectl get secret grafana -n monitoring -o jsonpath="{.data.admin-password}" | base64 --decode
+```
+Get password:
+### 3.	Go to Configuration → Data Sources
+### 4.	Add a new datasource:
+ * **Type**: Prometheus
+ * **URL**: http://<THANOS_QUERY_NODEPORT_IP>:<NODEPORT>
+
+This makes Grafana read:
+ * **Live metrics** → from Prometheus (via sidecar)
+ * **Historical metrics** → from S3 (via Store Gateway)
+ 
+ Import dashboards or build custom ones as needed.
+________________________________________
+# Key Architecture Concepts
+## Prometheus
+ * Scrapes metrics from exporters
+ * Stores blocks locally in TSDB
+ * Runs a Thanos Sidecar
+## Thanos Sidecar
+ * Reads Prometheus TSDB
+ * Uploads blocks to S3 (if enabled)
+ * Exposes Prometheus metrics via gRPC to Thanos Query
+## Thanos Store Gateway
+ * Reads historical blocks from S3
+ * Feeds historical metrics to Thanos Query
+## Thanos Compactor
+ * Deduplicates blocks
+ * Downsamples
+ * Enforces retention
+## Thanos Query
+ * Federates all data sources:
+   * Prometheus (live)
+   * S3 (historical)
+   * Other clusters (optional)
+ * Grafana connects only to Query
+## Grafana
+ * Uses Thanos Query as datasource
+ * Displays real-time + historical metrics seamlessly
+
 
 ## Conclusion
 
