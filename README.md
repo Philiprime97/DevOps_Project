@@ -359,10 +359,11 @@ ________________________________________
 ## 5. Apply Thanos Configuration and Components
 ### 1. Create Kubernetes Secret for S3
 Your thanos-secret.yaml must contain:
- * access key
- * secret key
- * bucket name
- * region
+ * Access_Key
+ * Secret_Key
+ * Bucket_Name
+ * Region
+
 Apply it:
 ```bash
 kubectl apply -f thanos-secret.yaml
