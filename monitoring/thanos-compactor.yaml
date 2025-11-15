@@ -39,7 +39,7 @@ spec:
       volumes:
         - name: objstore-config
           secret:
-            secretName: thanos-objstore-config # 👇 contains your S3 credentials
+            secretName: thanos-objstore-config # 👇 Secret_Name - contains your S3 credentials
         - name: data
           persistentVolumeClaim:
             claimName: thanos-compact-pvc
