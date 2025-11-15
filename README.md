@@ -305,6 +305,55 @@ Now access the app from your local windows pc browser:
 In this workflow, we will extend **Prometheus** monitoring with **Thanos** to enable long-term, centralized storage and global querying of metrics. To achieve this, we will create an **S3 bucket** for storing Prometheus blocks, set up a dedicated **IAM user** with the necessary S3 permissions, and configure Prometheus with a **Thanos sidecar** to upload data and expose gRPC endpoints. We will deploy **Thanos components—including Query, Compactor, and optionally Store Gateway** to aggregate live and historical metrics. Finally, **Grafana** will be configured to use **Thanos Query** as a datasource, allowing dashboards to display both live metrics from Prometheus and historical data from S3. Required elements include a Kubernetes cluster, Prometheus deployment, S3 bucket and credentials, **Thanos manifests** or **Helm values**, and **Grafana** connected to **Thanos Query**.
 
 ________________________________________
+## Thanos Architecture — Short Overview
+
+Thanos extends Prometheus into a highly available, long-term, global monitoring system.
+It adds several components around Prometheus to solve major limitations like scalability, HA, and long-term storage.
+Prometheus by itself stores metrics locally on disk and can only collect and query data from a single server. Thanos solves these limitations by introducing multiple components that work together around Prometheus.
+
+## How Thanos Works (High-Level Architecture)
+
+### 1. Prometheus (Scraper + TSDB)
+Prometheus continues to scrape targets and stores time-series data locally in its **TSDB (Time Series Database)**.
+Nothing changes in how Prometheus collects metrics.
+
+### 2. Thanos Sidecar
+A sidecar container runs inside the same Prometheus Pod.
+It performs **two major functions**:
+ * Exposes Prometheus data over gRPC for Thanos Query (live data access).
+ * Optionally uploads Prometheus TSDB blocks to an object store (S3, GCS, MinIO) for long-term storage.
+
+### 3. Object Storage (S3)
+Instead of keeping old metrics only on the Prometheus disk, Thanos stores blocks in an S3 bucket.
+This provides:
+ * Unlimited retention
+ * Centralized storage
+ * Data durability
+
+### 4. Thanos Store Gateway
+A component that reads historical data **directly from S3** and exposes it to Thanos Query.
+It does **not** scrape or collect metrics – it only serves compressed blocks stored in the bucket.
+
+### 5. Thanos Compactor
+Optimizes and organizes S3 data by:
+ * Downsampling old metrics
+ * Merging small blocks into larger ones
+ * Enforcing retention policies
+
+This reduces S3 costs and improves query performance.
+
+### 6. Thanos Query
+The central aggregator that combines:
+ * **Live data** from Prometheus (via Sidecar)
+ * **Historical data** from S3 (via Store Gateway)
+
+### 7. Grafana
+Instead of connecting directly to Prometheus, Grafana connects to **Thanos Query**, allowing dashboards to show:
+ * Real-time data from Prometheus
+ * Long-term historical data from S3
+ * Data from multiple Prometheus instances (multi-cluster monitoring)
+________________________________________
+
 ## Repository Structure
 ```bash
 /monitoring
